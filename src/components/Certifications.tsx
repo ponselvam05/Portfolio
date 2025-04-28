@@ -1,39 +1,67 @@
 
 import React from 'react';
 import { Award } from 'lucide-react';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+
+const certifications = [
+  {
+    id: 'aws',
+    title: 'AWS Certified Developer',
+    org: 'Amazon Web Services',
+    year: '2024'
+  },
+  {
+    id: 'react',
+    title: 'React Developer Certification',
+    org: 'Meta',
+    year: '2023'
+  },
+  {
+    id: 'python',
+    title: 'Python Professional',
+    org: 'Python Institute',
+    year: '2023'
+  },
+  {
+    id: 'google',
+    title: 'Google Cloud Associate',
+    org: 'Google Cloud',
+    year: '2022'
+  }
+];
 
 const Certifications: React.FC = () => {
   return (
     <section id="certifications" className="py-20 px-4 bg-navy-light">
-      <div className="container mx-auto max-w-4xl">
+      <div className="container mx-auto max-w-6xl">
         <h2 className="section-heading">
           <span className="text-mint mr-2">
             <Award className="inline-block" size={30} />
           </span>
           Certifications
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div id="aws" className="bg-navy p-6 rounded-lg hover:scale-105 transition-transform duration-300">
-            <h3 className="text-xl font-semibold text-white">AWS Certified Developer</h3>
-            <p className="text-mint">Amazon Web Services</p>
-            <p className="text-slate">2024</p>
-          </div>
-          <div id="react" className="bg-navy p-6 rounded-lg hover:scale-105 transition-transform duration-300">
-            <h3 className="text-xl font-semibold text-white">React Developer Certification</h3>
-            <p className="text-mint">Meta</p>
-            <p className="text-slate">2023</p>
-          </div>
-          <div id="python" className="bg-navy p-6 rounded-lg hover:scale-105 transition-transform duration-300">
-            <h3 className="text-xl font-semibold text-white">Python Professional</h3>
-            <p className="text-mint">Python Institute</p>
-            <p className="text-slate">2023</p>
-          </div>
-          <div id="google" className="bg-navy p-6 rounded-lg hover:scale-105 transition-transform duration-300">
-            <h3 className="text-xl font-semibold text-white">Google Cloud Associate</h3>
-            <p className="text-mint">Google Cloud</p>
-            <p className="text-slate">2022</p>
-          </div>
-        </div>
+        
+        <Carousel className="w-full max-w-4xl mx-auto" opts={{ align: "start" }}>
+          <CarouselContent className="-ml-4">
+            {certifications.map((cert) => (
+              <CarouselItem key={cert.id} className="pl-4 md:basis-1/2 lg:basis-1/3">
+                <div id={cert.id} className="bg-navy p-6 rounded-lg h-full">
+                  <h3 className="text-xl font-semibold text-white">{cert.title}</h3>
+                  <p className="text-mint">{cert.org}</p>
+                  <p className="text-slate">{cert.year}</p>
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious />
+          <CarouselNext />
+        </Carousel>
       </div>
     </section>
   );
