@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { ArrowDown } from 'lucide-react';
-
 const Hero: React.FC = () => {
   // Typing animation state
   const [displayedText, setDisplayedText] = useState('');
   const fullText = 'I build things for the web.';
-  
   useEffect(() => {
     if (displayedText.length < fullText.length) {
       const timeout = setTimeout(() => {
@@ -14,32 +12,34 @@ const Hero: React.FC = () => {
       return () => clearTimeout(timeout);
     }
   }, [displayedText]);
-  
-  return (
-    <section className="h-screen flex items-center relative px-4">
+  return <section className="h-screen flex items-center relative px-4">
       <div className="container mx-auto">
         <div className="max-w-3xl">
           <p className="text-mint mb-5 animate-fade-in">Hi, my name is</p>
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-4 text-white animate-fade-in" style={{ animationDelay: '0.1s' }}>
-            John Doe.
-          </h1>
-          <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-slate mb-6 h-[70px] md:h-auto animate-fade-in" style={{ animationDelay: '0.2s' }}>
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-4 text-white animate-fade-in" style={{
+          animationDelay: '0.1s'
+        }}>Ponselvam S.</h1>
+          <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-slate mb-6 h-[70px] md:h-auto animate-fade-in" style={{
+          animationDelay: '0.2s'
+        }}>
             {displayedText}
             <span className="inline-block w-1 h-6 md:h-8 bg-mint ml-1 animate-pulse"></span>
           </h2>
-          <p className="text-slate max-w-lg text-lg mb-8 animate-fade-in" style={{ animationDelay: '0.3s' }}>
+          <p className="text-slate max-w-lg text-lg mb-8 animate-fade-in" style={{
+          animationDelay: '0.3s'
+        }}>
             I'm a passionate web developer specializing in building exceptional digital experiences. 
             Currently, I'm focused on building accessible, human-centered products.
           </p>
-          <div className="animate-fade-in" style={{ animationDelay: '0.4s' }}>
+          <div className="animate-fade-in" style={{
+          animationDelay: '0.4s'
+        }}>
             <a href="#projects" className="btn inline-flex items-center">
               Check out my work
             </a>
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default Hero;
