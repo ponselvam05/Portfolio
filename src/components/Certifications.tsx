@@ -13,14 +13,24 @@ const Certifications: React.FC = () => {
           Certifications
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="bg-navy p-6 rounded-lg hover:scale-105 transition-transform duration-300">
+          <div id="aws" className="bg-navy p-6 rounded-lg hover:scale-105 transition-transform duration-300">
             <h3 className="text-xl font-semibold text-white">AWS Certified Developer</h3>
             <p className="text-mint">Amazon Web Services</p>
-            <p className="text-slate">2023</p>
+            <p className="text-slate">2024</p>
           </div>
-          <div className="bg-navy p-6 rounded-lg hover:scale-105 transition-transform duration-300">
+          <div id="react" className="bg-navy p-6 rounded-lg hover:scale-105 transition-transform duration-300">
             <h3 className="text-xl font-semibold text-white">React Developer Certification</h3>
             <p className="text-mint">Meta</p>
+            <p className="text-slate">2023</p>
+          </div>
+          <div id="python" className="bg-navy p-6 rounded-lg hover:scale-105 transition-transform duration-300">
+            <h3 className="text-xl font-semibold text-white">Python Professional</h3>
+            <p className="text-mint">Python Institute</p>
+            <p className="text-slate">2023</p>
+          </div>
+          <div id="google" className="bg-navy p-6 rounded-lg hover:scale-105 transition-transform duration-300">
+            <h3 className="text-xl font-semibold text-white">Google Cloud Associate</h3>
+            <p className="text-mint">Google Cloud</p>
             <p className="text-slate">2022</p>
           </div>
         </div>
