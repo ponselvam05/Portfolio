@@ -1,12 +1,39 @@
 
 import React from 'react';
 import { Mail, Github, Linkedin } from 'lucide-react';
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Button } from "@/components/ui/button";
+import { useToast } from "@/hooks/use-toast";
 
 const Contact: React.FC = () => {
+  const { toast } = useToast();
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const data = {
+      name: formData.get('name'),
+      email: formData.get('email'),
+      message: formData.get('message'),
+    };
+
+    // Here you would typically send this data to your email service
+    console.log('Form data:', data);
+    
+    toast({
+      title: "Message sent!",
+      description: "Thank you for your message. I'll get back to you soon!",
+    });
+
+    // Reset the form
+    e.currentTarget.reset();
+  };
+
   return (
     <section id="contact" className="py-20 px-4">
       <div className="container mx-auto max-w-3xl text-center">
-        <p className="text-mint text-sm mb-2">03. What's Next?</p>
+        <p className="text-mint text-sm mb-2">04. What's Next?</p>
         <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">Get In Touch</h2>
         
         <p className="mb-10 text-slate-light">
@@ -14,11 +41,46 @@ const Contact: React.FC = () => {
           I'll do my best to get back to you!
         </p>
         
-        <div className="mb-10">
-          <a href="mailto:hello@example.com" className="btn inline-flex items-center">
-            <Mail size={18} className="mr-2" /> Say Hello
-          </a>
-        </div>
+        <form onSubmit={handleSubmit} className="space-y-6 text-left mb-10">
+          <div>
+            <label htmlFor="name" className="text-white block mb-2">Name</label>
+            <Input
+              id="name"
+              name="name"
+              placeholder="Your name"
+              required
+              className="w-full"
+            />
+          </div>
+          
+          <div>
+            <label htmlFor="email" className="text-white block mb-2">Email</label>
+            <Input
+              id="email"
+              name="email"
+              type="email"
+              placeholder="your@email.com"
+              required
+              className="w-full"
+            />
+          </div>
+          
+          <div>
+            <label htmlFor="message" className="text-white block mb-2">Message</label>
+            <Textarea
+              id="message"
+              name="message"
+              placeholder="Your message"
+              required
+              className="w-full min-h-[150px]"
+            />
+          </div>
+          
+          <Button type="submit" className="w-full">
+            <Mail size={18} className="mr-2" />
+            Send Message
+          </Button>
+        </form>
         
         <div className="flex justify-center space-x-8">
           <a 

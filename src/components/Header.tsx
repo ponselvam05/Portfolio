@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import { Menu, X } from 'lucide-react';
@@ -7,7 +6,6 @@ const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   
-  // Handle scroll effect
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
@@ -18,9 +16,11 @@ const Header: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
   
-  // Nav links
   const navLinks = [
     { name: 'About', href: '#about' },
+    { name: 'Education', href: '#education' },
+    { name: 'Certifications', href: '#certifications' },
+    { name: 'Internships', href: '#internships' },
     { name: 'Projects', href: '#projects' },
     { name: 'Contact', href: '#contact' }
   ];
@@ -33,12 +33,10 @@ const Header: React.FC = () => {
       )}
     >
       <div className="container mx-auto px-4 md:px-6 flex justify-between items-center">
-        {/* Logo */}
         <a href="#" className="text-xl font-bold gradient-text">
           <span className="text-2xl">{'<Dev />'}</span>
         </a>
         
-        {/* Desktop Menu */}
         <nav className="hidden md:flex items-center space-x-8">
           {navLinks.map((link, index) => (
             <a 
@@ -54,7 +52,6 @@ const Header: React.FC = () => {
           </a>
         </nav>
         
-        {/* Mobile Menu Button */}
         <button 
           className="md:hidden text-mint"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -63,7 +60,6 @@ const Header: React.FC = () => {
         </button>
       </div>
       
-      {/* Mobile Menu */}
       <div className={cn(
         'fixed inset-0 bg-navy-dark/95 z-40 flex flex-col items-center justify-center transition-transform duration-300 md:hidden',
         mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
