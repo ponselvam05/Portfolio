@@ -1,33 +1,55 @@
 
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import { Mail, Github, Linkedin } from 'lucide-react';
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
+import emailjs from '@emailjs/browser';
 
 const Contact: React.FC = () => {
   const { toast } = useToast();
+  const formRef = useRef<HTMLFormElement>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    const data = {
-      name: formData.get('name'),
-      email: formData.get('email'),
-      message: formData.get('message'),
-    };
+    setIsSubmitting(true);
 
-    // Here you would typically send this data to your email service
-    console.log('Form data:', data);
-    
-    toast({
-      title: "Message sent!",
-      description: "Thank you for your message. I'll get back to you soon!",
-    });
+    try {
+      // Replace these values with your actual EmailJS credentials
+      const serviceId = 'YOUR_EMAILJS_SERVICE_ID';
+      const templateId = 'YOUR_EMAILJS_TEMPLATE_ID';
+      const publicKey = 'YOUR_EMAILJS_PUBLIC_KEY';
+      
+      const result = await emailjs.sendForm(
+        serviceId,
+        templateId,
+        e.currentTarget,
+        publicKey
+      );
 
-    // Reset the form
-    e.currentTarget.reset();
+      console.log('Email sent successfully:', result.text);
+      
+      toast({
+        title: "Message sent!",
+        description: "Thank you for your message. I'll get back to you soon!",
+      });
+
+      // Reset the form
+      if (formRef.current) {
+        formRef.current.reset();
+      }
+    } catch (error) {
+      console.error('Failed to send email:', error);
+      toast({
+        title: "Message failed to send",
+        description: "There was a problem sending your message. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -41,7 +63,7 @@ const Contact: React.FC = () => {
           I'll do my best to get back to you!
         </p>
         
-        <form onSubmit={handleSubmit} className="space-y-6 text-left mb-10">
+        <form ref={formRef} onSubmit={handleSubmit} className="space-y-6 text-left mb-10">
           <div>
             <label htmlFor="name" className="text-white block mb-2">Name</label>
             <Input
@@ -76,9 +98,18 @@ const Contact: React.FC = () => {
             />
           </div>
           
-          <Button type="submit" className="w-full">
-            <Mail size={18} className="mr-2" />
-            Send Message
+          <Button type="submit" className="w-full" disabled={isSubmitting}>
+            {isSubmitting ? (
+              <>
+                <span className="animate-spin mr-2">⏳</span>
+                Sending...
+              </>
+            ) : (
+              <>
+                <Mail size={18} className="mr-2" />
+                Send Message
+              </>
+            )}
           </Button>
         </form>
         
