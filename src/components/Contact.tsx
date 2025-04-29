@@ -7,6 +7,13 @@ import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import emailjs from '@emailjs/browser';
 
+// EmailJS configuration - replace these values with your actual credentials
+const EMAILJS_CONFIG = {
+  serviceId: 'service_id', // Replace with your EmailJS Service ID
+  templateId: 'YOUR_EMAILJS_TEMPLATE_ID', // Replace with your EmailJS Template ID
+  publicKey: 'YOUR_EMAILJS_PUBLIC_KEY', // Replace with your EmailJS Public Key
+};
+
 const Contact: React.FC = () => {
   const { toast } = useToast();
   const formRef = useRef<HTMLFormElement>(null);
@@ -17,16 +24,11 @@ const Contact: React.FC = () => {
     setIsSubmitting(true);
 
     try {
-      // Replace these values with your actual EmailJS credentials
-      const serviceId = 'YOUR_EMAILJS_SERVICE_ID';
-      const templateId = 'YOUR_EMAILJS_TEMPLATE_ID';
-      const publicKey = 'YOUR_EMAILJS_PUBLIC_KEY';
-      
       const result = await emailjs.sendForm(
-        serviceId,
-        templateId,
+        EMAILJS_CONFIG.serviceId,
+        EMAILJS_CONFIG.templateId,
         e.currentTarget,
-        publicKey
+        EMAILJS_CONFIG.publicKey
       );
 
       console.log('Email sent successfully:', result.text);
