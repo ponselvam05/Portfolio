@@ -58,9 +58,9 @@ const About: React.FC = () => {
             <div className="relative rounded-md overflow-hidden border-2 border-mint z-10">
               <div className="bg-mint/10 absolute inset-0 z-20"></div>
               <img 
-                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80" 
+                src="/lovable-uploads/85342940-3184-467c-94c2-42f1b0ed5bee.png" 
                 alt="Profile" 
-                className="w-full rounded-md grayscale hover:grayscale-0 transition-all"
+                className="w-full rounded-md grayscale hover:grayscale-0 transition-all object-cover object-center aspect-[3/4]"
               />
             </div>
             <div className="absolute -bottom-3 -right-3 w-full h-full border-2 border-mint rounded-md -z-10 transition-all duration-300 group-hover:-bottom-5 group-hover:-right-5"></div>
