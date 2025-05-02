@@ -7,11 +7,11 @@ import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import emailjs from '@emailjs/browser';
 
-// EmailJS configuration - replace these values with your actual credentials
+// EmailJS configuration with actual credentials
 const EMAILJS_CONFIG = {
-  serviceId: 'service_id', // Replace with your EmailJS Service ID
-  templateId: 'YOUR_EMAILJS_TEMPLATE_ID', // Replace with your EmailJS Template ID
-  publicKey: 'YOUR_EMAILJS_PUBLIC_KEY', // Replace with your EmailJS Public Key
+  serviceId: 'service_svj58di',
+  templateId: 'template_6nbxe2o',
+  publicKey: 'iiaRpSP9ODjugtTB9',
 };
 
 const Contact: React.FC = () => {
