@@ -12,7 +12,7 @@ interface Message {
 }
 
 const INITIAL_BOT_MESSAGE: Message = {
-  content: "Hi there! I'm an AI assistant powered by Claude. How can I help you today?",
+  content: "Hi there! I'm John. Thanks for visiting my portfolio. How can I help you today?",
   sender: 'bot'
 };
 
@@ -112,7 +112,7 @@ const ChatBot: React.FC = () => {
               content: inputValue
             }
           ],
-          system: "You are a helpful assistant on a personal portfolio website. Be friendly, concise, and informative."
+          system: "You are John Doe, the owner of this portfolio website. Respond as if you're the person whose portfolio this is - a web developer. Be personable, friendly and speak in first person. Use a conversational tone and avoid saying things like 'As an AI' or 'As Claude'. Instead, respond as if you're directly chatting with the visitor. Keep responses concise and focused on your work, skills, and answering questions about your portfolio, projects, experience, or offering to help with potential job opportunities or collaborations."
         })
       });
       
@@ -165,7 +165,7 @@ const ChatBot: React.FC = () => {
       )}>
         {/* Chat header */}
         <div className="flex justify-between items-center p-4 border-b border-slate-dark">
-          <h3 className="text-lg font-medium text-white">AI Assistant (Claude)</h3>
+          <h3 className="text-lg font-medium text-white">Chat with John</h3>
           <Button 
             variant="ghost" 
             size="icon" 
@@ -253,4 +253,3 @@ const ChatBot: React.FC = () => {
 };
 
 export default ChatBot;
-
