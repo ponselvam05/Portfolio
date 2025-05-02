@@ -6,6 +6,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import emailjs from '@emailjs/browser';
+import ChatBot from './ChatBot';
 
 // EmailJS configuration with actual credentials
 const EMAILJS_CONFIG = {
@@ -55,7 +56,7 @@ const Contact: React.FC = () => {
   };
 
   return (
-    <section id="contact" className="py-20 px-4">
+    <section id="contact" className="py-20 px-4 relative">
       <div className="container mx-auto max-w-3xl text-center">
         <p className="text-mint text-sm mb-2">04. What's Next?</p>
         <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">Get In Touch</h2>
@@ -140,6 +141,9 @@ const Contact: React.FC = () => {
           </a>
         </div>
       </div>
+      
+      {/* ChatBot component */}
+      <ChatBot />
     </section>
   );
 };
