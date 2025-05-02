@@ -12,7 +12,7 @@ interface Message {
 }
 
 const INITIAL_BOT_MESSAGE: Message = {
-  content: "Hi there! I'm an AI assistant powered by OpenAI. How can I help you today?",
+  content: "Hi there! I'm an AI assistant powered by Claude. How can I help you today?",
   sender: 'bot'
 };
 
@@ -28,7 +28,7 @@ const ChatBot: React.FC = () => {
 
   // Try to get the API key from localStorage on component mount
   useEffect(() => {
-    const storedKey = localStorage.getItem('openai_api_key');
+    const storedKey = localStorage.getItem('claude_api_key');
     if (storedKey) {
       setApiKey(storedKey);
       setKeySubmitted(true);
@@ -55,19 +55,19 @@ const ChatBot: React.FC = () => {
     if (!apiKey.trim()) {
       toast({
         title: "API Key Required",
-        description: "Please enter your OpenAI API key.",
+        description: "Please enter your Claude API key.",
         variant: "destructive",
       });
       return;
     }
     
     // Store the API key in localStorage
-    localStorage.setItem('openai_api_key', apiKey);
+    localStorage.setItem('claude_api_key', apiKey);
     setKeySubmitted(true);
     
     toast({
       title: "API Key Saved",
-      description: "Your OpenAI API key has been saved for this session.",
+      description: "Your Claude API key has been saved for this session.",
     });
   };
 
@@ -78,7 +78,7 @@ const ChatBot: React.FC = () => {
     if (!apiKey) {
       toast({
         title: "API Key Required",
-        description: "Please enter your OpenAI API key first.",
+        description: "Please enter your Claude API key first.",
         variant: "destructive",
       });
       return;
@@ -91,20 +91,18 @@ const ChatBot: React.FC = () => {
     setIsLoading(true);
     
     try {
-      // Call OpenAI API
-      const response = await fetch('https://api.openai.com/v1/chat/completions', {
+      // Call Claude API
+      const response = await fetch('https://api.anthropic.com/v1/messages', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${apiKey}`
+          'x-api-key': apiKey,
+          'anthropic-version': '2023-06-01'
         },
         body: JSON.stringify({
-          model: 'gpt-4o-mini',
+          model: 'claude-3-opus-20240229',
+          max_tokens: 500,
           messages: [
-            {
-              role: 'system',
-              content: 'You are a helpful assistant on a personal portfolio website. Be friendly, concise, and informative.'
-            },
             ...messages.map(msg => ({
               role: msg.sender === 'user' ? 'user' : 'assistant',
               content: msg.content
@@ -114,27 +112,27 @@ const ChatBot: React.FC = () => {
               content: inputValue
             }
           ],
-          max_tokens: 500
+          system: "You are a helpful assistant on a personal portfolio website. Be friendly, concise, and informative."
         })
       });
       
       if (!response.ok) {
         const error = await response.json();
-        throw new Error(error.error?.message || 'Failed to get response from OpenAI');
+        throw new Error(error.error?.message || 'Failed to get response from Claude');
       }
 
       const data = await response.json();
       const botMessage: Message = { 
-        content: data.choices[0].message.content.trim(), 
+        content: data.content[0].text, 
         sender: 'bot' 
       };
       
       setMessages(prev => [...prev, botMessage]);
     } catch (error) {
-      console.error('Error calling OpenAI API:', error);
+      console.error('Error calling Claude API:', error);
       toast({
         title: "API Error",
-        description: error instanceof Error ? error.message : "Failed to get response from OpenAI",
+        description: error instanceof Error ? error.message : "Failed to get response from Claude",
         variant: "destructive",
       });
       
@@ -167,7 +165,7 @@ const ChatBot: React.FC = () => {
       )}>
         {/* Chat header */}
         <div className="flex justify-between items-center p-4 border-b border-slate-dark">
-          <h3 className="text-lg font-medium text-white">AI Assistant</h3>
+          <h3 className="text-lg font-medium text-white">AI Assistant (Claude)</h3>
           <Button 
             variant="ghost" 
             size="icon" 
@@ -182,7 +180,7 @@ const ChatBot: React.FC = () => {
         {!keySubmitted ? (
           // API Key submission form
           <div className="flex-1 p-4 flex flex-col">
-            <p className="text-white mb-4">Please enter your OpenAI API key to use the chatbot:</p>
+            <p className="text-white mb-4">Please enter your Claude API key to use the chatbot:</p>
             <form onSubmit={handleAPIKeySubmit} className="space-y-4">
               <Input
                 type="password"
@@ -255,3 +253,4 @@ const ChatBot: React.FC = () => {
 };
 
 export default ChatBot;
+
