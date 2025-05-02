@@ -27,10 +27,7 @@ const Hero: React.FC = () => {
           </h2>
           <p className="text-slate max-w-lg text-lg mb-8 animate-fade-in" style={{
           animationDelay: '0.3s'
-        }}>
-            I'm a passionate web developer specializing in building exceptional digital experiences. 
-            Currently, I'm focused on building accessible, human-centered products.
-          </p>
+        }}>I'm a passionate web developer specializing in building exceptional digital experiences. Currently, I'm focused on building accessible, human-centered produ.</p>
           <div className="animate-fade-in" style={{
           animationDelay: '0.4s'
         }}>
