@@ -1,6 +1,8 @@
+
 import React, { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, FileText, Download } from 'lucide-react';
+import { toast } from "@/hooks/use-toast";
 
 const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -24,6 +26,21 @@ const Header: React.FC = () => {
     { name: 'Projects', href: '#projects' },
     { name: 'Contact', href: '#contact' }
   ];
+
+  const handleResumeDownload = () => {
+    toast({
+      title: "Downloading Resume",
+      description: "Your resume is being downloaded",
+    });
+    
+    // This simulates a download - in a real app, you would use an actual file path
+    const link = document.createElement('a');
+    link.href = "/resume.pdf";  // Path to your resume file
+    link.download = "John_Doe_Resume.pdf";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
   
   return (
     <header 
@@ -47,9 +64,13 @@ const Header: React.FC = () => {
               <span className="text-mint mr-1">{index + 1}.</span> {link.name}
             </a>
           ))}
-          <a href="/resume.pdf" className="btn" target="_blank" rel="noopener noreferrer">
+          <button 
+            className="btn inline-flex items-center gap-2"
+            onClick={handleResumeDownload}
+          >
+            <FileText size={16} />
             Resume
-          </a>
+          </button>
         </nav>
         
         <button 
@@ -75,15 +96,16 @@ const Header: React.FC = () => {
               <span className="text-mint mr-1">{index + 1}.</span> {link.name}
             </a>
           ))}
-          <a 
-            href="/resume.pdf" 
-            className="btn mt-4" 
-            onClick={() => setMobileMenuOpen(false)}
-            target="_blank" 
-            rel="noopener noreferrer"
+          <button 
+            className="btn mt-4 inline-flex items-center gap-2" 
+            onClick={() => {
+              handleResumeDownload();
+              setMobileMenuOpen(false);
+            }}
           >
+            <FileText size={16} />
             Resume
-          </a>
+          </button>
         </nav>
       </div>
     </header>
