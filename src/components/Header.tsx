@@ -4,6 +4,8 @@ import { cn } from '@/lib/utils';
 import { Menu, X, FileText, Download } from 'lucide-react';
 import { toast } from "@/hooks/use-toast";
 
+
+
 const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -35,8 +37,8 @@ const Header: React.FC = () => {
     
     // This simulates a download - in a real app, you would use an actual file path
     const link = document.createElement('a');
-    link.href = "/resume.pdf";  // Path to your resume file
-    link.download = "John_Doe_Resume.pdf";
+    link.href = "assests/ponselvam_resume2025.pdf" ;  // Path to your resume file
+    link.download = "ponselvam_resume2025.pdf";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -51,7 +53,7 @@ const Header: React.FC = () => {
     >
       <div className="container mx-auto px-4 md:px-6 flex justify-between items-center">
         <a href="#" className="text-xl font-bold gradient-text">
-          <span className="text-2xl">{'<Dev />'}</span>
+          <span className="text-2xl" >{'<BuildMyByte />'}</span>
         </a>
         
         <nav className="hidden md:flex items-center space-x-8">
@@ -103,7 +105,7 @@ const Header: React.FC = () => {
               setMobileMenuOpen(false);
             }}
           >
-            <FileText size={16} />
+            <FileText size={1000} />
             Resume
           </button>
         </nav>

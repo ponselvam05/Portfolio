@@ -14,31 +14,38 @@ import { toast } from "@/hooks/use-toast";
 const certifications = [
   {
     id: 'aws',
-    title: 'AWS Certified Developer',
-    org: 'Amazon Web Services',
+    title: 'Oracle Apex',
+    org: 'Vibathi Labs',
     year: '2024',
-    filename: 'aws-certification.pdf'
+    filename: 'Oracle_apex_certificate.pdf'
   },
   {
     id: 'react',
-    title: 'React Developer Certification',
-    org: 'Meta',
-    year: '2023',
-    filename: 'react-certification.pdf'
+    title: 'Introduction to Internet of Things',
+    org: 'NPTEL',
+    year: '2024',
+    filename: 'Introduction To Internet Of Things.pdf'
   },
   {
     id: 'python',
-    title: 'Python Professional',
-    org: 'Python Institute',
-    year: '2023',
-    filename: 'python-certification.pdf'
+    title: 'Cloud Computing',
+    org: 'NPTEL',
+    year: '2024',
+    filename: 'Cloud Computing.pdf'
   },
   {
     id: 'google',
-    title: 'Google Cloud Associate',
-    org: 'Google Cloud',
-    year: '2022',
-    filename: 'google-certification.pdf'
+    title: 'ANGULAR',
+    org: 'Infosys',
+    year: '2025',
+    filename: '2212405_angular_infosys_certificate.pdf'
+  },
+  {
+    id: 'google',
+    title: 'REACT',
+    org: 'Infosys',
+    year: '2025',
+    filename: 'ReactJs_2212405_Ponselvam.pdf'
   }
 ];
 
@@ -53,7 +60,7 @@ const Certifications: React.FC = () => {
     
     // This simulates a download - in a real app, you would use an actual file path
     const link = document.createElement('a');
-    link.href = `/certificates/${cert.filename}`;
+    link.href = `/assests/${cert.filename}`;
     link.download = cert.filename;
     document.body.appendChild(link);
     link.click();

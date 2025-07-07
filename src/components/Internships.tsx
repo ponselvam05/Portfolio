@@ -4,18 +4,18 @@ import { Briefcase } from 'lucide-react';
 
 const internships = [
   {
-    title: "Software Developer Intern",
-    company: "Tech Corp Inc.",
-    period: "Summer 2022",
-    logo: "/lovable-uploads/85342940-3184-467c-94c2-42f1b0ed5bee.png", // Using available image as placeholder
-    description: "Developed and maintained web applications using React and Node.js. Collaborated with senior developers on various projects."
+    title: "Frontend Developer Intern",
+    company: "Codesoft",
+    period: "25 JUN - 25 JUL 2024",
+    logo: "assests/codsoftlogo.jpg", // Using available image as placeholder
+    description: "I built responsive and interactive web projects using modern technologies like HTML, CSS, JavaScript, and React. Gained hands-on experience in frontend design, component structuring, and real-world project workflows."
   },
   {
-    title: "Frontend Developer Intern",
-    company: "Web Solutions Ltd",
-    period: "Summer 2021",
-    logo: "/lovable-uploads/85342940-3184-467c-94c2-42f1b0ed5bee.png", // Using available image as placeholder
-    description: "Built responsive user interfaces using modern web technologies. Participated in code reviews and team meetings."
+    title: "FullStack WebDevelopment in MERN Intern",
+    company: "WSA Accademy",
+    period: "12 FEB - 23 APR 2024",
+    logo: "assests/wsalogo.jpeg", // Using available image as placeholder
+    description: "Foundation programming in HTML,CSS,Javascript,React.SDLC Based project build using MERN Stack"
   }
 ];
 

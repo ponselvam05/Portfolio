@@ -7,7 +7,7 @@ import { toast } from "@/hooks/use-toast";
 const educationItems = [
   {
     degree: "Computer Science",
-    institution: "University of Technology",
+    institution: "National Engineering College",
     period: "2023 - 2026",
     details: "CCGPA - 7.8",
     filename: "computer_science_transcript.pdf"
@@ -16,7 +16,7 @@ const educationItems = [
     degree: "Diploma In Mechanical",
     institution: "IRT Polytechnic College - Tirunelveli",
     period: "2020 - 2023",
-    details: "Focused on mathematics and computer science.",
+    details: "Percentage - 87.47",
     filename: "mechanical_diploma.pdf"
   }
 ];

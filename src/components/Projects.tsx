@@ -15,25 +15,25 @@ interface Project {
 // Original showcase projects
 const showcaseProjects: Project[] = [
   {
-    title: "E-Commerce Platform",
-    description: "A fully-functional e-commerce platform with payment integration, product filtering, user authentication, and admin dashboard.",
-    technologies: ["React", "Node.js", "MongoDB", "Stripe", "Redux"],
-    githubLink: "https://github.com",
+    title: "PlayHaven",
+    description: "Developed a Netflix-style video streaming app with user authentication and playlist sharing.",
+    technologies: ["MongoDB", "Express", "React", "Node", "Redux"],
+    githubLink: "https://github.com/ponselvam05/PlayHaven",
     demoLink: "https://demo.com",
     image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1115&q=80"
   },
   {
-    title: "Task Management App",
-    description: "A productivity app that helps users manage tasks with features like drag-and-drop, notifications, and team collaboration.",
-    technologies: ["React", "TypeScript", "Firebase", "Tailwind CSS"],
-    githubLink: "https://github.com",
+    title: "ProFileX",
+    description: "Designed a system for Faculty enrollments, conferences, and event updates. Dynamic JSP-based web pages with Derby DB, admin and faculty login modules.",
+    technologies: ["JSP", "Derby"],
+    githubLink: "https://github.com/ponselvam05/Faculty-Profile-Management-System",
     demoLink: "https://demo.com",
     image: "https://images.unsplash.com/photo-1555421689-3f034debb7a6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
   },
   {
-    title: "Real-time Chat Application",
-    description: "A chat platform with real-time messaging, user profiles, and file sharing capabilities.",
-    technologies: ["Next.js", "Socket.io", "PostgreSQL", "AWS S3"],
+    title: "Finance-Expense Tracker",
+    description: "A simple web application that helps users track their income and expenses. Built using Angular and TypeScript, it allows users to add, edit, and delete transactions and see their balance in real time.",
+    technologies: ["Angular", "Typescript"],
     githubLink: "https://github.com",
     demoLink: "https://demo.com",
     image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
@@ -148,7 +148,7 @@ const Projects: React.FC = () => {
 
         <div className="mt-20 text-center">
           <a 
-            href="https://github.com" 
+            href="https://github.com/ponselvam05" 
             target="_blank" 
             rel="noopener noreferrer"
             className="btn inline-flex items-center"

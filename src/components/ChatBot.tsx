@@ -12,7 +12,7 @@ interface Message {
 }
 
 const INITIAL_BOT_MESSAGE: Message = {
-  content: "Hi there! I'm John. Thanks for visiting my portfolio. How can I help you today?",
+  content: "Hi there! I'm Ponselvam. Thanks for visiting my portfolio. How can I help you today?",
   sender: 'bot'
 };
 
@@ -28,7 +28,7 @@ const ChatBot: React.FC = () => {
 
   // Try to get the API key from localStorage on component mount
   useEffect(() => {
-    const storedKey = localStorage.getItem('claude_api_key');
+    const storedKey = localStorage.getItem('AIzaSyAqNYbCMBk7mAtWv9TCNRJnBo7uDqmlPT4');
     if (storedKey) {
       setApiKey(storedKey);
       setKeySubmitted(true);
@@ -75,77 +75,62 @@ const ChatBot: React.FC = () => {
     e.preventDefault();
     
     if (!inputValue.trim()) return;
-    if (!apiKey) {
-      toast({
-        title: "API Key Required",
-        description: "Please enter your Claude API key first.",
-        variant: "destructive",
-      });
-      return;
-    }
-    
-    // Add user message to the conversation
+  
     const userMessage: Message = { content: inputValue, sender: 'user' };
     setMessages(prev => [...prev, userMessage]);
     setInputValue('');
     setIsLoading(true);
-    
+  
     try {
-      // Call Claude API
-      const response = await fetch('https://api.anthropic.com/v1/messages', {
-        method: 'POST',
+      const response = await fetch("https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent?key=AIzaSyAqNYbCMBk7mAtWv9TCNRJnBo7uDqmlPT4", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
-          'x-api-key': apiKey,
-          'anthropic-version': '2023-06-01'
+          "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          model: 'claude-3-opus-20240229',
-          max_tokens: 500,
-          messages: [
+          contents: [
             ...messages.map(msg => ({
-              role: msg.sender === 'user' ? 'user' : 'assistant',
-              content: msg.content
+              role: msg.sender === 'user' ? 'user' : 'model',
+              parts: [{ text: msg.content }]
             })),
             {
-              role: 'user',
-              content: inputValue
+              role: "user",
+              parts: [{ text: inputValue }]
             }
-          ],
-          system: "You are John Doe, the owner of this portfolio website. Respond as if you're the person whose portfolio this is - a web developer. Be personable, friendly and speak in first person. Use a conversational tone and avoid saying things like 'As an AI' or 'As Claude'. Instead, respond as if you're directly chatting with the visitor. Keep responses concise and focused on your work, skills, and answering questions about your portfolio, projects, experience, or offering to help with potential job opportunities or collaborations."
+          ]
         })
       });
-      
+  
       if (!response.ok) {
         const error = await response.json();
-        throw new Error(error.error?.message || 'Failed to get response from Claude');
+        throw new Error(error?.error?.message || "Failed to get response from Gemini.");
       }
-
+  
       const data = await response.json();
-      const botMessage: Message = { 
-        content: data.content[0].text, 
-        sender: 'bot' 
+      const botText = data.candidates?.[0]?.content?.parts?.[0]?.text || "Sorry, I couldn't generate a response.";
+  
+      const botMessage: Message = {
+        content: botText,
+        sender: "bot"
       };
-      
       setMessages(prev => [...prev, botMessage]);
     } catch (error) {
-      console.error('Error calling Claude API:', error);
+      console.error("Gemini API error:", error);
       toast({
         title: "API Error",
-        description: error instanceof Error ? error.message : "Failed to get response from Claude",
-        variant: "destructive",
+        description: error instanceof Error ? error.message : "Something went wrong with Gemini.",
+        variant: "destructive"
       });
-      
-      // Add error message to chat
-      const errorMessage: Message = { 
-        content: "Sorry, I encountered an error processing your request. Please check your API key or try again later.", 
-        sender: 'bot' 
-      };
-      setMessages(prev => [...prev, errorMessage]);
+  
+      setMessages(prev => [
+        ...prev,
+        { content: "Sorry, I encountered an error. Please try again.", sender: "bot" }
+      ]);
     } finally {
       setIsLoading(false);
     }
   };
+  
 
   return (
     <>
@@ -165,7 +150,7 @@ const ChatBot: React.FC = () => {
       )}>
         {/* Chat header */}
         <div className="flex justify-between items-center p-4 border-b border-slate-dark">
-          <h3 className="text-lg font-medium text-white">Chat with John</h3>
+          <h3 className="text-lg font-medium text-white">Chat with Selva</h3>
           <Button 
             variant="ghost" 
             size="icon" 

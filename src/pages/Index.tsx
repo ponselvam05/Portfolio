@@ -10,9 +10,10 @@ import Projects from '@/components/Projects';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 
+
 const Index: React.FC = () => {
   useEffect(() => {
-    document.title = 'John Doe | Web Developer';
+    document.title = 'Ponselvam | Web Developer';
   }, []);
 
   return (
@@ -27,7 +28,7 @@ const Index: React.FC = () => {
         <Projects />
         <Contact />
       </main>
-      <Footer />
+      
     </div>
   );
 };
